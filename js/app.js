@@ -6,14 +6,14 @@ var hoursList = ['6.00 am','7.00 am','8.00 am','9.00 am','10.00 am','11.00 am','
 
 var locationsData = [];
 
-function LocationsData(name, 
-  minimumPerCustomer, 
+function LocationsData(name,
+  minimumPerCustomer,
   maximumPerCustomer,
   averagePerCustomer,
   avgCookies,
   totalCookies
 ) {
-  this.name = name
+  this.name = name;
   this.minimumPerCustomer = minimumPerCustomer;
   this.maximumPerCustomer = maximumPerCustomer;
   this.averagePerCustomer = averagePerCustomer;
@@ -23,11 +23,11 @@ function LocationsData(name,
   {
     var locationSalesDetailsForDay = [];
     for (var i=0;i<hoursList.length;i++){
-      locationSalesDetailsForDay[i] = Math.round(Math.random() * 
+      locationSalesDetailsForDay[i] = Math.round(Math.random() *
                 (this.maximumPerCustomer- this.minimumPerCustomer) + 1);
     }
-    return locationSalesDetailsForDay;  
-  }
+    return locationSalesDetailsForDay;
+  };
   this.locationSalesPerDayDisplayData = function()
   {
     var locationHourlyTotals = [];
@@ -39,25 +39,25 @@ function LocationsData(name,
     }
     locationHourlyTotals[i] = 'Total: ' + totalSalesCount + appendTextConstant;
     return locationHourlyTotals;
-  }
-    
+  };
+
   this.avgCookies = function()
   {
     var totalCookies = 0;
     for (var i=0;i<hoursList.length;i++){
-      totalCookies =  totalCookies + this.locationSalesPerDay()[i];
+      totalCookies = totalCookies + this.locationSalesPerDay()[i];
     }
     return Math.round(totalCookies / (hoursList.length));
-  }
+  };
 
   this.totalCookies = function()
   {
     var totalCookiesSold = 0;
     for (var i=0;i<hoursList.length;i++){
-      totalCookiesSold =  totalCookiesSold + this.locationSalesPerDay()[i];
+      totalCookiesSold = totalCookiesSold + this.locationSalesPerDay()[i];
     }
     return totalCookiesSold;
-  }              
+  };
 }
 
 var Pike1StreetLocation = new LocationsData('Pike', 23, 65, 6, 0, 0);
@@ -80,7 +80,7 @@ function consoleLogs(totalCookies,locationName,averageCookies,minCookiesCustomer
   console.log('    ');
 }
 
-    
+
 var table = document.getElementById('shell');
 
 //Create td elements data
@@ -96,29 +96,29 @@ function makeTable(locations,firstElement,lastElement){
 }
 var table = document.getElementById('cookieResults');
 var tRow = document.getElementById('tHeading');
-function makeHeaderRow() {     
-        
-  data.push('<td>' + 'Location Name' + '</td>')
+function makeHeaderRow() {
+
+  data.push('<td>' + 'Location Name' + '</td>');
   for (var i=0; i < hoursList.length; i++) {
     data.push(
-      '<td>' + hoursList[i] + '</td>' 
-    )
+      '<td>' + hoursList[i] + '</td>'
+    );
   }
-  data.push('<td>' + 'Daily Location Total' + '</td>')
-        
+  data.push('<td>' + 'Daily Location Total' + '</td>');
+
 }
 
-function makeFooterRow(hourlyTotal) {     
+function makeFooterRow(hourlyTotal) {
   var newColumn = document.createElement('td');
   newColumn.innerHTML = 'Totals' ;
   table.appendChild(newColumn);
-  for (var i=0; i <= hoursList.length; i++) {          
+  for (var i=0; i <= hoursList.length; i++) {
     newColumn = document.createElement('td');
     newColumn.innerHTML = hourlyTotal[i];
     table.appendChild(newColumn);
-  }        
+  }
 }
-      
+
 function render(tableRow) {
   for (var j=0; j < tableRow.length; j++) {
     var newColumn = document.createElement('td');
@@ -127,8 +127,8 @@ function render(tableRow) {
       table.appendChild(newColumn);
   }
 }
-       
-            
+
+
 function renderSalesData(tableRow) {
   if (table!=null)
   {
@@ -153,42 +153,42 @@ function renderSalesData(tableRow) {
       hourlyTotal[td]=hourlyTotal[td]+dailyCount;
     }
     makeFooterRow(hourlyTotal);
-  } 
+  }
 }
 
 makeHeaderRow();
 render(data);
-renderSalesData(locationsData)
+renderSalesData(locationsData);
 
 
 function showAboutUs() {
-  document.getElementById("specials").style.display="none";
-  document.getElementById("hours").style.display="none";
-  document.getElementById("location").style.display="none";
-  document.getElementById('contactus').style.display = "none";
-  document.getElementById('aboutus').style.display = "block";
+  document.getElementById('specials').style.display='none';
+  document.getElementById('hours').style.display='none';
+  document.getElementById('location').style.display='none';
+  document.getElementById('contactus').style.display = 'none';
+  document.getElementById('aboutus').style.display = 'block';
 }
-    
+
 function showLocations() {
-  document.getElementById("specials").style.display="none";
-  document.getElementById("hours").style.display="none";
-  document.getElementById("aboutus").style.display="none";
-  document.getElementById('contactus').style.display = "none";
-  document.getElementById('location').style.display = "block";
+  document.getElementById('specials').style.display='none';
+  document.getElementById('hours').style.display='none';
+  document.getElementById('aboutus').style.display='none';
+  document.getElementById('contactus').style.display = 'none';
+  document.getElementById('location').style.display = 'block';
 }
-    
+
 function showHours() {
-  document.getElementById("specials").style.display="none";
-  document.getElementById("location").style.display="none";
-  document.getElementById('aboutus').style.display = "none";
-  document.getElementById('contactus').style.display = "none";
-  document.getElementById('hours').style.display = "block";
+  document.getElementById('specials').style.display='none';
+  document.getElementById('location').style.display='none';
+  document.getElementById('aboutus').style.display = 'none';
+  document.getElementById('contactus').style.display = 'none';
+  document.getElementById('hours').style.display = 'block';
 }
 
 function showContactUs() {
-  document.getElementById("hours").style.display="none";
-  document.getElementById("location").style.display="none";
-  document.getElementById('aboutus').style.display = "none";
-  document.getElementById('specials').style.display = "none";
-  document.getElementById('contactus').style.display = "block";
+  document.getElementById('hours').style.display='none';
+  document.getElementById('location').style.display='none';
+  document.getElementById('aboutus').style.display = 'none';
+  document.getElementById('specials').style.display = 'none';
+  document.getElementById('contactus').style.display = 'block';
 }
